@@ -1,0 +1,16 @@
+.task {
+  display: inline-flex;
+  width: 100%;
+  margin: 1rem;
+
+  &-text {
+    text-align: left;
+    width: 1000%;
+  }
+
+  &-buttons{
+    display: inline-flex;
+    gap: 1rem;
+    align-items: flex-end;
+  }
+}
