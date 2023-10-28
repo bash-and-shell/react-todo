@@ -1,0 +1,10 @@
+.add-task {
+
+  text-align: left;
+  
+  &-group{
+    display: flex;
+    gap: 1rem;
+  }
+ 
+}
