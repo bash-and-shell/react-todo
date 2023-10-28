@@ -5,12 +5,13 @@ import { useState } from 'react';
 
 const AddTask = (props) => {
 
+  const { onSubmit, ...rest } = props;
   const [value, setValue] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    props.onSubmit(value);
+    setValue('');
+    onSubmit(value);
   }
 
   return (

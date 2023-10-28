@@ -8,18 +8,25 @@ import { useState } from 'react';
 
 const App = () => {
 
-  const [tasks, setTasks] = useState(["Example Task 1"])
+  const [tasks, setTasks] = useState([])
   
   const addTask = (task) => {
     setTasks([...tasks, task])
   }
 
-  const removeTask = (task) => {
-
+  const deleteTask = (task) => {
+    const updateTasks = [...tasks]
+    updateTasks.splice(task, 1)
+    setTasks(updateTasks)
   }
 
   const editTask = (task) => {
-
+    const edit = prompt('Edit task:');
+    if (edit !== null && edit.trim() !== '') {
+      let updateTasks = [...tasks]
+      updateTasks[task] = edit
+      setTasks(updateTasks)
+    }
   }
 
   return (
@@ -29,7 +36,7 @@ const App = () => {
       
       <TaskList>
         {tasks.map((task, index)=> {
-          return <Task index={index} text={task}/>
+          return <Task key={index} text={task} handleDelete={deleteTask} handleEdit={editTask}/>
         })}
       </TaskList>
       </Container>
