@@ -16,11 +16,8 @@ const App = () => {
   const [canChangeLists, setCanChangeLists] = useState(false)
 
   useEffect(() => {
-    if(lists.length > 1)
+    if(tabKey !== 'All')
       setCanChangeLists(true)
-  }, [lists])
-
-  useEffect(() => {
     if(tabKey === 'All')
       setCanChangeLists(false)
   }, [tabKey])
@@ -68,6 +65,7 @@ const App = () => {
       return false;
     
     setLists([...lists, list])
+    setTabKey(list)
   }
 
   const editList = (newName) => {
