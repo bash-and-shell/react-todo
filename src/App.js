@@ -15,6 +15,7 @@ const App = (props) => {
   const [tabKey, setTabKey] = useState(props.tabKey)
   const [canChangeLists, setCanChangeLists] = useState(props.canChange)
 
+  //Dont allow user to add item to the 'All' list
   useEffect(() => {
     if (tabKey !== 'All')
       setCanChangeLists(true)
@@ -22,6 +23,7 @@ const App = (props) => {
       setCanChangeLists(false)
   }, [tabKey])
 
+  //change state of task to completed
   const completeItem = (i) => {
     let newTasks = tasks
 
@@ -38,7 +40,7 @@ const App = (props) => {
 
   const addTask = (t) => {
     const task = {
-      id: uuidv4(),
+      id: uuidv4(), //generate unqiue id for each task
       list: tabKey,
       value: t,
       completed: false
