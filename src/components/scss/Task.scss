@@ -1,12 +1,14 @@
 .task {
   display: inline-flex;
   width: 100%;
+  gap: 1rem;
 
   &-text {
     text-align: left;
     width: 100%;
+    margin-top: 0.5rem;
 
-    &.strikethrough label {
+    &.strikethrough {
       text-decoration: line-through;
     }
   }
@@ -15,5 +17,9 @@
     display: inline-flex;
     gap: 1rem;
     align-items: flex-end;
+  }
+
+  &-check-icon {
+    margin: 0.5rem;
   }
 }

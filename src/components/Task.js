@@ -1,27 +1,29 @@
 import './scss/Task.scss';
 import { useState, useEffect } from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
-import { Form } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
+import { CheckCircle, CheckCircleFill } from 'react-bootstrap-icons';
 
 const Task = (props) => {
 
-  const {text, index, handleDelete, handleEdit } = props;
-  const [checked, setChecked] = useState(false)
+  const {text, id, handleDelete, handleEdit, completed, onCheck } = props;
+  const [checked, setChecked] = useState(completed)
 
   const handleCheck = () => {
     setChecked(!checked)
+    onCheck(id)
   }
 
-  // useEffect(() => {
+  useEffect(() => {
+    setChecked(completed)
+  }, [completed])
 
-  // }, [checked])
-
-  return (<ListGroup.Item key={index} className="task">
-  <Form.Check  className={`task-text${checked ? ' strikethrough' : ''}`} type='checkbox' label={text} value={checked} onChange={(e) => {handleCheck()}} />
+  return (<ListGroup.Item key={id} className="task">
+    {checked ?  <CheckCircleFill size={25}  className="task-check-icon" onClick={() => handleCheck(id)}/> : <CheckCircle size={25} className="task-check-icon"  onClick={() => handleCheck(id)}/>}
+    <label className={`task-text${checked ? ' strikethrough' : ''}`}>{text}</label>
     <span className="task-buttons">
-      <Button variant="light" onClick={() => handleEdit(index)}>Edit</Button>
-      <Button variant="danger" onClick={() => handleDelete(index)}>Delete</Button>
+      <Button variant="light" onClick={() => handleEdit(id)}>Edit</Button>
+      <Button variant="danger" onClick={() => handleDelete(id)}>Delete</Button>
     </span> 
   </ListGroup.Item>
    
