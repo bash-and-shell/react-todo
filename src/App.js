@@ -104,7 +104,7 @@ const App = (props) => {
 
   return (
     <div className="App">
-      <Container component="main" maxWidth="xs">
+      <Container component="main" >
       
         <Row>
           <Col>

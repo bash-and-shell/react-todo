@@ -7,7 +7,6 @@ exports[`matches snapshot 1`] = `
   <div
     className="container"
     component="main"
-    maxWidth="xs"
   >
     <div
       className="row"
