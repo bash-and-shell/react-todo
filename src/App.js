@@ -1,5 +1,5 @@
 import './App.scss';
-import { Container, Tab, Tabs } from 'react-bootstrap';
+import { Container, Tab, TabContainer, Tabs } from 'react-bootstrap';
 import AddTask from './components/AddTask.js';
 import "bootstrap/dist/css/bootstrap.css";
 import Task from './components/Task.js';
@@ -11,11 +11,35 @@ import { useState } from 'react';
 const App = () => {
 
   const [tasks, setTasks] = useState([])
-  const [tabKey, setTabKey] = useState('all')
+  const [lists, setLists] = useState(['All'])
+  const [tabKey, setTabKey] = useState(lists[0])
 
-  const addTask = (task) => {
+  const completeItem = (index) => {
+    let newTasks = tasks
+    const task = newTasks[index]
+    
+    task.completed = !task.completed
+
+    newTasks[index] = task
+
+    setTasks(newTasks)
+
+    console.log(tasks)
+  }
+
+
+  const addTask = (t) => {    
+    const task = {
+      id: tasks.length,
+      list: tabKey,
+      value: t,
+      completed: false
+    }
+
     setTasks([...tasks, task])
   }
+
+  
 
   const deleteTask = (task) => {
     const updateTasks = [...tasks]
@@ -32,27 +56,43 @@ const App = () => {
     }
   }
 
-  const addList = () => {
-    
+  const addList = (list) => {
+    setLists([...lists, list])
   }
 
   return (
     <div className="App">
       <Container component="main" maxWidth="xs">
         <AddTask onSubmit={addTask} />
-        <NewList onSubmit={(e) => {console.log(e)}} />
+        <NewList onSubmit={list => addList(list)} />
         <Tabs
           id="tab-list"
           activeKey={tabKey}
           onSelect={k => setTabKey(k)}
         >
-          <Tab eventKey='all' title='All'>
+          <Tab eventKey='All' title='All'>
             <TaskList>
               {tasks.map((task, index) => {
-                return <Task key={index} text={task} handleDelete={deleteTask} handleEdit={editTask} />
+                return <Task id={task.id} key={index} list={task.list} text={task.value} handleDelete={deleteTask} handleEdit={editTask} completed={task.completed} onCheck={completeItem}/>
               })}
             </TaskList>
           </Tab>
+
+          {lists.map((list, listIndex) =>{
+            if(listIndex === 0) return;
+            return (
+              <Tab key={listIndex} eventKey={list} title={list}>
+            <TaskList>
+              {tasks.map((task, index) => {
+                if(task.list === lists[listIndex]){
+                  return <Task id={task.id} key={index} list={task.list} text={task.value} handleDelete={deleteTask} handleEdit={editTask} completed={task.completed} onCheck={completeItem}/>
+                }
+              })}
+            </TaskList>
+          </Tab>
+            )
+          })}
+
         </Tabs>
 
 
