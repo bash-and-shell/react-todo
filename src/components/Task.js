@@ -43,7 +43,7 @@ const Task = (props) => {
 
   
   return (<><ListGroup.Item key={id} className="task">
-    {checked ?  <CheckCircleFill size={25}  className="task-check-icon" onClick={() => handleCheck(id)}/> : <CheckCircle size={25} className="task-check-icon"  onClick={() => handleCheck(id)}/>}
+    {checked ?  <CheckCircleFill size={25}  data-testid="filled-check" className="task-check-icon" onClick={() => handleCheck(id)}/> : <CheckCircle data-testid="check" size={25} className="task-check-icon"  onClick={() => handleCheck(id)}/>}
     <label className={`task-text${checked ? ' strikethrough' : ''}`}>{text}</label>
     {withList && <label className={`task-text list`}>{list}</label>}
     <div className="task--spacer"/>
