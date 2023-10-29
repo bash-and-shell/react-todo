@@ -51,13 +51,10 @@ const App = () => {
     setTasks(updateTasks)
   }
 
-  const editTask = (task) => {
-    const edit = prompt('Edit task:');
-    if (edit !== null && edit.trim() !== '') {
-      let updateTasks = [...tasks]
-      updateTasks[task] = edit
-      setTasks(updateTasks)
-    }
+  const editTask = (task, value) => {
+      let updateTasks = tasks
+      updateTasks[task].value = value
+      setTasks([...updateTasks])
   }
 
   const addList = (list) => {
