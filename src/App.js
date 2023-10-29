@@ -15,16 +15,16 @@ const App = (props) => {
   const [canChangeLists, setCanChangeLists] = useState(props.canChange)
 
   useEffect(() => {
-    if(tabKey !== 'All')
+    if (tabKey !== 'All')
       setCanChangeLists(true)
-    if(tabKey === 'All')
+    if (tabKey === 'All')
       setCanChangeLists(false)
   }, [tabKey])
 
   const completeItem = (index) => {
     let newTasks = tasks
     const task = newTasks[index]
-    
+
     task.completed = !task.completed
 
     newTasks[index] = task
@@ -33,7 +33,7 @@ const App = (props) => {
   }
 
 
-  const addTask = (t) => {    
+  const addTask = (t) => {
     const task = {
       id: tasks.length,
       list: tabKey,
@@ -51,34 +51,34 @@ const App = (props) => {
   }
 
   const editTask = (task, value) => {
-      let updateTasks = tasks
-      updateTasks[task].value = value
-      setTasks([...updateTasks])
+    let updateTasks = tasks
+    updateTasks[task].value = value
+    setTasks([...updateTasks])
   }
 
   const addList = (list) => {
-    if(lists.includes(list)) 
+    if (lists.includes(list))
       return false;
-    
+
     setLists([...lists, list])
     setTabKey(list)
   }
 
   const editList = (newName) => {
-    if(lists.includes(newName)) 
+    if (lists.includes(newName))
       return false;
 
     let updateLists = lists;
     let updateTasks = tasks;
 
-    updateTasks.forEach((task, index) =>{
-      if(task.list === tabKey) {
+    updateTasks.forEach((task, index) => {
+      if (task.list === tabKey) {
         task.list = newName;
       }
     })
 
     updateLists[updateLists.indexOf(tabKey)] = newName;
-   
+
     setTasks(updateTasks)
     setLists(updateLists)
     setTabKey(newName)
@@ -87,37 +87,37 @@ const App = (props) => {
   const deleteList = () => {
     let updateTasks = [];
 
-    tasks.forEach((task) =>{
-      if(task.list !== tabKey) {
+    tasks.forEach((task) => {
+      if (task.list !== tabKey) {
         updateTasks.push(task)
       }
     })
-    
+
     let updateLists = lists
     updateLists.splice(updateLists.indexOf(tabKey), 1)
-    
+
     setTasks(updateTasks)
     setLists(updateLists)
     setTabKey('All')
   }
-  
+
 
   return (
     <div className="App">
       <Container component="main" >
-      
+
         <Row>
           <Col>
-          <EditLists type="New" onSubmit={list => addList(list)} />
+            <EditLists type="New" onSubmit={list => addList(list)} />
           </Col>
-           <Col>
+          <Col>
             <EditLists type="Edit" onSubmit={list => editList(list)} enabled={canChangeLists} />
-            </Col>
-            <Col>
+          </Col>
+          <Col>
             <EditLists type="Delete" onSubmit={list => deleteList(list)} currentList={tabKey} enabled={canChangeLists} />
-            </Col>       
+          </Col>
         </Row>
-       
+
         <Tabs
           id="tab-list"
           activeKey={tabKey}
@@ -126,23 +126,23 @@ const App = (props) => {
           <Tab eventKey='All' title='All'>
             <TaskList>
               {tasks.map((task, index) => {
-                return <Task id={task.id} key={index} withList={true} list={task.list} text={task.value} handleDelete={deleteTask} handleEdit={editTask} completed={task.completed} onCheck={completeItem}/>
+                return <Task id={task.id} key={index} withList={true} list={task.list} text={task.value} handleDelete={deleteTask} handleEdit={editTask} completed={task.completed} onCheck={completeItem} />
               })}
             </TaskList>
           </Tab>
 
-          {lists.map((list, listIndex) =>{
-            if(listIndex === 0) return;
+          {lists.map((list, listIndex) => {
+            if (listIndex === 0) return;
             return (
               <Tab key={listIndex} eventKey={list} title={list}>
-            <TaskList>
-              {tasks.map((task, index) => {
-                if(task.list === lists[listIndex]){
-                  return <Task id={task.id} key={index} list={task.list} text={task.value} handleDelete={deleteTask} handleEdit={editTask} completed={task.completed} onCheck={completeItem}/>
-                }
-              })}
-            </TaskList>
-          </Tab>
+                <TaskList>
+                  {tasks.map((task, index) => {
+                    if (task.list === lists[listIndex]) {
+                      return <Task id={task.id} key={index} list={task.list} text={task.value} handleDelete={deleteTask} handleEdit={editTask} completed={task.completed} onCheck={completeItem} />
+                    }
+                  })}
+                </TaskList>
+              </Tab>
             )
           })}
 
@@ -151,7 +151,7 @@ const App = (props) => {
         {canChangeLists && <Row>
           <AddTask onSubmit={addTask} enabled={canChangeLists} />
 
-       </Row>}
+        </Row>}
       </Container>
 
     </div>
