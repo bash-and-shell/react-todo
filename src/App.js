@@ -1,5 +1,5 @@
 import './App.scss';
-import { Container, Tab, TabContainer, Tabs } from 'react-bootstrap';
+import { Container, Tab, TabContainer, Tabs, Row, Col } from 'react-bootstrap';
 import AddTask from './components/AddTask.js';
 import "bootstrap/dist/css/bootstrap.css";
 import Task from './components/Task.js';
@@ -98,21 +98,30 @@ const App = () => {
     })
     
     let updateLists = lists
-    updateLists = updateLists.splice(updateLists.indexOf(tabKey), 1)
-
+    updateLists.splice(updateLists.indexOf(tabKey), 1)
     
     setTasks(updateTasks)
     setLists(updateLists)
+    setTabKey('All')
   }
   
 
   return (
     <div className="App">
       <Container component="main" maxWidth="xs">
-        <AddTask onSubmit={addTask} enabled={canChangeLists} />
-        <EditLists type="New" onSubmit={list => addList(list)} />
-        <EditLists type="Edit" onSubmit={list => editList(list)} />
-        <EditLists type="Delete" onSubmit={list => deleteList(list)} />
+      
+        <Row>
+          <Col>
+          <EditLists type="New" onSubmit={list => addList(list)} />
+          </Col>
+           <Col>
+            <EditLists type="Edit" onSubmit={list => editList(list)} enabled={canChangeLists} />
+            </Col>
+            <Col>
+            <EditLists type="Delete" onSubmit={list => deleteList(list)} currentList={tabKey} enabled={canChangeLists} />
+            </Col>       
+        </Row>
+       
         <Tabs
           id="tab-list"
           activeKey={tabKey}
@@ -121,7 +130,7 @@ const App = () => {
           <Tab eventKey='All' title='All'>
             <TaskList>
               {tasks.map((task, index) => {
-                return <Task id={task.id} key={index} list={task.list} text={task.value} handleDelete={deleteTask} handleEdit={editTask} completed={task.completed} onCheck={completeItem}/>
+                return <Task id={task.id} key={index} withList={true} list={task.list} text={task.value} handleDelete={deleteTask} handleEdit={editTask} completed={task.completed} onCheck={completeItem}/>
               })}
             </TaskList>
           </Tab>
@@ -143,7 +152,10 @@ const App = () => {
 
         </Tabs>
 
+        {canChangeLists && <Row>
+          <AddTask onSubmit={addTask} enabled={canChangeLists} />
 
+       </Row>}
       </Container>
 
     </div>
