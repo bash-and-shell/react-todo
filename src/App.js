@@ -8,12 +8,11 @@ import EditLists from './components/EditLists';
 import { useEffect, useState } from 'react';
 
 
-const App = () => {
-
-  const [tasks, setTasks] = useState([])
-  const [lists, setLists] = useState(['All'])
-  const [tabKey, setTabKey] = useState(lists[0])
-  const [canChangeLists, setCanChangeLists] = useState(false)
+const App = (props) => {
+  const [tasks, setTasks] = useState(props.task)
+  const [lists, setLists] = useState(props.lists)
+  const [tabKey, setTabKey] = useState(props.tabKey)
+  const [canChangeLists, setCanChangeLists] = useState(props.canChange)
 
   useEffect(() => {
     if(tabKey !== 'All')
