@@ -15,6 +15,7 @@ const NewList = (props) => {
   const handleSubmit = () => {
     setValue('')
     onSubmit(value);
+    handleClose();
   }
 
 
