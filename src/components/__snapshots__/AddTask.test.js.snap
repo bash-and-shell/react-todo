@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<form
+  className="add-task"
+  onSubmit={[Function]}
+>
+  <label
+    className="form-label"
+  >
+    Enter New Task
+  </label>
+  <div
+    className="add-task-group"
+  >
+    <input
+      className="form-control"
+      id="addTask"
+      onChange={[Function]}
+      placeholder="Enter task"
+      type="text"
+      value=""
+    />
+    <button
+      className="btn btn-primary"
+      disabled={true}
+      type="submit"
+    >
+      Add
+    </button>
+  </div>
+</form>
+`;
