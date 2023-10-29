@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
@@ -11,17 +11,29 @@ const EditLists = (props) => {
   const [show, setShow] = useState(false);
   const [value, setValue] = useState('');
   const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const handleClose = () => setShow(false);
   const handleOpen = () => setShow(true);
+  const [enabled, setEnabled] = useState(false);
+
+  useEffect(() => {
+    setEnabled(props.enabled);
+  }, [props.enabled])
 
   const handleSubmit = () => {
-    setValue('')
-
-    if(onSubmit(value) === false) {
+    if(value === '') {
+      setErrorMessage('Please enter a name')
       setError(true)
       return;
     }
 
+    if(onSubmit(value) === false) {
+      setErrorMessage('This list name is already in use')
+      setError(true)
+      return;
+    }
+
+    setValue('')
     handleClose();
     setError(false);
   }
@@ -47,7 +59,7 @@ const EditLists = (props) => {
 
   if( type === 'New' || type === 'Edit' )return(
     <>
-      <Button variant={buttonVariant()} onClick={handleOpen}>
+      <Button variant={buttonVariant()} onClick={handleOpen} disabled={type ==='New' ? false : !enabled}>
         {type} List
       </Button>
 
@@ -61,7 +73,7 @@ const EditLists = (props) => {
 
               <Form.Label>Enter {type === 'Edit' && 'new '}name here</Form.Label>
               <Form.Control autoFocus type="text" onChange={e => setValue(e.target.value)} value={value} />
-            {error && <p className="error">This list name already exists</p>}
+            {error && <p className="error">{errorMessage}</p>}
             </Form.Group>
             </Form>
 
@@ -81,7 +93,7 @@ const EditLists = (props) => {
 
   if( type === 'Delete' )return(
     <>
-      <Button variant={buttonVariant()} onClick={handleOpen}>
+      <Button variant={buttonVariant()} onClick={handleOpen} disabled={!enabled}>
         {type} List
       </Button>
 
