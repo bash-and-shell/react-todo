@@ -5,12 +5,19 @@
 
   &-text {
     text-align: left;
-    width: 100%;
     margin-top: 0.5rem;
 
     &.strikethrough {
       text-decoration: line-through;
     }
+    
+    &.list {
+      color: grey;
+    }
+  }
+
+  &--spacer {
+    flex-grow: 1;
   }
 
   &-buttons {
