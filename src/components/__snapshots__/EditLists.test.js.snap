@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<button
+  className="btn btn-success"
+  disabled={false}
+  onClick={[Function]}
+  type="button"
+>
+  New
+   List
+</button>
+`;
