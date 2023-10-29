@@ -30,7 +30,7 @@ exports[`matches snapshot 1`] = `
       >
         <button
           className="btn btn-primary"
-          disabled={true}
+          disabled={false}
           onClick={[Function]}
           type="button"
         >
@@ -43,12 +43,11 @@ exports[`matches snapshot 1`] = `
       >
         <button
           className="btn btn-danger"
-          disabled={true}
+          disabled={false}
           onClick={[Function]}
           type="button"
         >
-          Delete
-           List
+          Delete List
         </button>
       </div>
     </div>
@@ -63,16 +62,35 @@ exports[`matches snapshot 1`] = `
       >
         <button
           aria-controls="tab-list-tabpane-All"
-          aria-selected={true}
-          className="nav-link active"
+          aria-selected={false}
+          className="nav-link"
           data-rr-ui-event-key="All"
           disabled={false}
           id="tab-list-tab-All"
           onClick={[Function]}
           role="tab"
+          tabIndex={-1}
           type="button"
         >
           All
+        </button>
+      </li>
+      <li
+        className="nav-item"
+        role="presentation"
+      >
+        <button
+          aria-controls="tab-list-tabpane-Test List 1"
+          aria-selected={true}
+          className="nav-link active"
+          data-rr-ui-event-key="Test List 1"
+          disabled={false}
+          id="tab-list-tab-Test List 1"
+          onClick={[Function]}
+          role="tab"
+          type="button"
+        >
+          Test List 1
         </button>
       </li>
     </ul>
@@ -81,15 +99,168 @@ exports[`matches snapshot 1`] = `
     >
       <div
         aria-labelledby="tab-list-tab-All"
-        className="fade tab-pane active show"
+        className="fade tab-pane"
         id="tab-list-tabpane-All"
         role="tabpanel"
       >
         <div
           className="task-list list-group"
           onKeyDown={[Function]}
-        />
+        >
+          <div
+            className="task list-group-item"
+            data-rr-ui-event-key={null}
+            onClick={[Function]}
+          >
+            <svg
+              className="task-check-icon"
+              data-testid="check"
+              fill="currentColor"
+              height={25}
+              onClick={[Function]}
+              viewBox="0 0 16 16"
+              width={25}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+              />
+              <path
+                d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"
+              />
+            </svg>
+            <label
+              className="task-text"
+            >
+              Test task 1
+            </label>
+            <label
+              className="task-text list"
+            >
+              Test List 1
+            </label>
+            <div
+              className="task--spacer"
+            />
+            <span
+              className="task-buttons"
+            >
+              <button
+                className="btn btn-light"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                Edit
+              </button>
+              <button
+                className="btn btn-danger"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                Delete
+              </button>
+            </span>
+          </div>
+        </div>
       </div>
+      <div
+        aria-labelledby="tab-list-tab-Test List 1"
+        className="fade tab-pane active show"
+        id="tab-list-tabpane-Test List 1"
+        role="tabpanel"
+      >
+        <div
+          className="task-list list-group"
+          onKeyDown={[Function]}
+        >
+          <div
+            className="task list-group-item"
+            data-rr-ui-event-key={null}
+            onClick={[Function]}
+          >
+            <svg
+              className="task-check-icon"
+              data-testid="check"
+              fill="currentColor"
+              height={25}
+              onClick={[Function]}
+              viewBox="0 0 16 16"
+              width={25}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+              />
+              <path
+                d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"
+              />
+            </svg>
+            <label
+              className="task-text"
+            >
+              Test task 1
+            </label>
+            <div
+              className="task--spacer"
+            />
+            <span
+              className="task-buttons"
+            >
+              <button
+                className="btn btn-light"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                Edit
+              </button>
+              <button
+                className="btn btn-danger"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                Delete
+              </button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="row"
+    >
+      <form
+        className="add-task"
+        onSubmit={[Function]}
+      >
+        <label
+          className="form-label"
+        >
+          Enter New Task
+        </label>
+        <div
+          className="add-task-group"
+        >
+          <input
+            className="form-control"
+            id="addTask"
+            onChange={[Function]}
+            placeholder="Enter task"
+            type="text"
+            value=""
+          />
+          <button
+            className="btn btn-primary"
+            disabled={true}
+            type="submit"
+          >
+            Add
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
