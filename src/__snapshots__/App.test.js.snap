@@ -9,39 +9,88 @@ exports[`matches snapshot 1`] = `
     component="main"
     maxWidth="xs"
   >
-    <form
-      className="add-task"
-      onSubmit={[Function]}
+    <div
+      className="row"
     >
-      <label
-        className="form-label"
-      >
-        Enter New Task
-      </label>
       <div
-        className="add-task-group"
+        className="col"
       >
-        <input
-          className="form-control"
-          id="addTask"
-          onChange={[Function]}
-          placeholder="Enter task"
-          type="text"
-          value=""
-        />
         <button
-          className="add-task-button btn btn-primary"
+          className="btn btn-success"
           disabled={false}
-          type="submit"
+          onClick={[Function]}
+          type="button"
         >
-          Add
+          New
+           List
         </button>
       </div>
-    </form>
-    <div
-      className="task-list list-group"
+      <div
+        className="col"
+      >
+        <button
+          className="btn btn-primary"
+          disabled={true}
+          onClick={[Function]}
+          type="button"
+        >
+          Edit
+           List
+        </button>
+      </div>
+      <div
+        className="col"
+      >
+        <button
+          className="btn btn-danger"
+          disabled={true}
+          onClick={[Function]}
+          type="button"
+        >
+          Delete
+           List
+        </button>
+      </div>
+    </div>
+    <ul
+      className="nav nav-tabs"
       onKeyDown={[Function]}
-    />
+      role="tablist"
+    >
+      <li
+        className="nav-item"
+        role="presentation"
+      >
+        <button
+          aria-controls="tab-list-tabpane-All"
+          aria-selected={true}
+          className="nav-link active"
+          data-rr-ui-event-key="All"
+          disabled={false}
+          id="tab-list-tab-All"
+          onClick={[Function]}
+          role="tab"
+          type="button"
+        >
+          All
+        </button>
+      </li>
+    </ul>
+    <div
+      className="tab-content"
+    >
+      <div
+        aria-labelledby="tab-list-tab-All"
+        className="fade tab-pane active show"
+        id="tab-list-tabpane-All"
+        role="tabpanel"
+      >
+        <div
+          className="task-list list-group"
+          onKeyDown={[Function]}
+        />
+      </div>
+    </div>
   </div>
 </div>
 `;
