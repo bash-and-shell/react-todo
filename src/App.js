@@ -1,15 +1,16 @@
 import './App.scss';
-import { Container } from 'react-bootstrap';
+import { Container, Tab, Tabs } from 'react-bootstrap';
 import AddTask from './components/AddTask.js';
 import "bootstrap/dist/css/bootstrap.css";
 import Task from './components/Task.js';
 import TaskList from './components/TaskList';
 import { useState } from 'react';
 
+
 const App = () => {
 
   const [tasks, setTasks] = useState([])
-  
+  const [tabKey, setTabKey] = useState('all')
   const addTask = (task) => {
     setTasks([...tasks, task])
   }
@@ -32,15 +33,24 @@ const App = () => {
   return (
     <div className="App">
       <Container component="main" maxWidth="xs">
-      <AddTask onSubmit={addTask}/>
-      
-      <TaskList>
-        {tasks.map((task, index)=> {
-          return <Task key={index} text={task} handleDelete={deleteTask} handleEdit={editTask}/>
-        })}
-      </TaskList>
+        <AddTask onSubmit={addTask} />
+        <Tabs
+          id="tab-list"
+          activeKey={tabKey}
+          onSelect={k => setTabKey(k)}
+        >
+          <Tab eventKey='all' title='All'>
+            <TaskList>
+              {tasks.map((task, index) => {
+                return <Task key={index} text={task} handleDelete={deleteTask} handleEdit={editTask} />
+              })}
+            </TaskList>
+          </Tab>
+        </Tabs>
+
+
       </Container>
-     
+
     </div>
   );
 }
