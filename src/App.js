@@ -4,6 +4,7 @@ import AddTask from './components/AddTask.js';
 import "bootstrap/dist/css/bootstrap.css";
 import Task from './components/Task.js';
 import TaskList from './components/TaskList';
+import NewList from './components/NewList';
 import { useState } from 'react';
 
 
@@ -11,6 +12,7 @@ const App = () => {
 
   const [tasks, setTasks] = useState([])
   const [tabKey, setTabKey] = useState('all')
+
   const addTask = (task) => {
     setTasks([...tasks, task])
   }
@@ -30,10 +32,15 @@ const App = () => {
     }
   }
 
+  const addList = () => {
+    
+  }
+
   return (
     <div className="App">
       <Container component="main" maxWidth="xs">
         <AddTask onSubmit={addTask} />
+        <NewList onSubmit={(e) => {console.log(e)}} />
         <Tabs
           id="tab-list"
           activeKey={tabKey}
