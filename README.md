@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Simple ToDo Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This mini project is to showcase my abilities in React completed over 2 days
 
 ## Available Scripts
 
