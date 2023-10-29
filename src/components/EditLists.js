@@ -21,7 +21,7 @@ const EditLists = (props) => {
   }, [props.enabled])
 
   const handleSubmit = () => {
-    if(value === '') {
+    if(value === '' && value.trim() !== '') {
       setErrorMessage('Please enter a name')
       setError(true)
       return;
