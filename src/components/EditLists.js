@@ -48,9 +48,6 @@ const EditLists = (props) => {
     setError(false);
   }
   
-
-  //TODO: error checking
-
   const buttonVariant = () => {
     if(type === 'New') return 'success'
     if(type === 'Edit') return 'primary'
@@ -94,7 +91,7 @@ const EditLists = (props) => {
   if( type === 'Delete' )return(
     <>
       <Button variant={buttonVariant()} onClick={handleOpen} disabled={!enabled}>
-        {type} List
+        Delete List
       </Button>
 
       <Modal show={show} onHide={handleClose}>
