@@ -6,7 +6,7 @@ import './scss/EditLists.scss';
 
 const EditLists = (props) => {
 
-  const { onSubmit, type } = props;
+  const { onSubmit, type, currentList } = props;
 
   const [show, setShow] = useState(false);
   const [value, setValue] = useState('');
@@ -87,7 +87,7 @@ const EditLists = (props) => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          Confirm Delete
+          Are you sure you want to delete your {currentList} list
         </Modal.Header>
         <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>
