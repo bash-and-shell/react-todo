@@ -4,10 +4,14 @@
 
   &-text {
     text-align: left;
-    width: 1000%;
+    width: 100%;
+
+    &.strikethrough label {
+      text-decoration: line-through;
+    }
   }
 
-  &-buttons{
+  &-buttons {
     display: inline-flex;
     gap: 1rem;
     align-items: flex-end;
