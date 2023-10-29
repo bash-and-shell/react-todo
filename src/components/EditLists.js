@@ -67,9 +67,7 @@ const EditLists = (props) => {
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="new-list-name">
-
-              <Form.Label>Enter {type === 'Edit' && 'new '}name here</Form.Label>
-              <Form.Control autoFocus type="text" onChange={e => setValue(e.target.value)} value={value} />
+              <Form.Control autoFocus type="text" onChange={e => setValue(e.target.value)} value={value} placeholder="Enter name here"/>
             {error && <p className="error">{errorMessage}</p>}
             </Form.Group>
             </Form>
