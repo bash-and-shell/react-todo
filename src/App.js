@@ -6,6 +6,7 @@ import Task from './components/Task.js';
 import TaskList from './components/TaskList';
 import EditLists from './components/EditLists';
 import { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 
 const App = (props) => {
@@ -21,8 +22,10 @@ const App = (props) => {
       setCanChangeLists(false)
   }, [tabKey])
 
-  const completeItem = (index) => {
+  const completeItem = (i) => {
     let newTasks = tasks
+
+    const index = newTasks.findIndex(t => t.id === i)
     const task = newTasks[index]
 
     task.completed = !task.completed
@@ -35,7 +38,7 @@ const App = (props) => {
 
   const addTask = (t) => {
     const task = {
-      id: tasks.length,
+      id: uuidv4(),
       list: tabKey,
       value: t,
       completed: false
@@ -46,13 +49,15 @@ const App = (props) => {
 
   const deleteTask = (task) => {
     const updateTasks = [...tasks]
-    updateTasks.splice(task, 1)
+    const index = updateTasks.findIndex(t => t.id === task)
+    updateTasks.splice(index, 1)
     setTasks(updateTasks)
   }
 
   const editTask = (task, value) => {
     let updateTasks = tasks
-    updateTasks[task].value = value
+    const index = updateTasks.findIndex(t => t.id === task)
+    updateTasks[index].value = value
     setTasks([...updateTasks])
   }
 
