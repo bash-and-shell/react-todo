@@ -13,10 +13,19 @@ const AddTask = (props) => {
     setEnabled(props.enabled);
   }, [props.enabled])
 
+  useEffect(() => {
+    if(value === '' || value.trim() === '') {
+      setEnabled(false)
+    }
+    else {
+      setEnabled(true)
+    }
+  },[value])
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    setValue('');
     onSubmit(value);
+    setValue('');
   }
 
   return (
